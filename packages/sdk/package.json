@@ -1,0 +1,28 @@
+{
+  "name": "@solweave/sdk",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "watch": "npm run build && node --trace-warnings .dist/index.js",
+    "dev": "ENVIRONMENT_NAME=dev npm-watch watch",
+    "build": "NODE_OPTIONS=--max-old-space-size=4096 tsc --jsx react --project . ",
+    "start": "node .dist/index.js"
+  },
+  "watch": {
+    "watch": {
+      "patterns": [
+        "src"
+      ],
+      "quiet": false,
+      "legacyWatch": true,
+      "extensions": "ts, js, tsx"
+    }
+  },
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+    "npm-watch": "^0.5.0",
+    "typescript": "^4.2.4"
+  }
+}
