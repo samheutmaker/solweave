@@ -1,4 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import axios from 'axios';
+import UploadCostCalculator from '@solweave/cost-calculator';
 
-console.log('SDK Entrypoint');
+async function main() {
+  const cost = await UploadCostCalculator.calculate([19000]);
+  console.log(cost);
+}
+
+main();
