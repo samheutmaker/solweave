@@ -19,7 +19,8 @@
     }
   },
   "dependencies": {
-    
+    "@types/axios": "^0.14.0",
+    "axios": "^0.24.0"
   },
   "devDependencies": {
     "npm-watch": "^0.5.0",

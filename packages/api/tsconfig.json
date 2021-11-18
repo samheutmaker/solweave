@@ -1,0 +1,32 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "inlineSourceMap": true,
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "target": "es6",
+    "esModuleInterop": true,
+    "lib": ["esnext", "DOM"],
+    "module": "commonjs",
+    "outDir": "./.dist/",
+    "declaration": true,
+    "jsx": "react",
+    "allowJs": true,
+    // "sourceMap": true,
+    // "strictNullChecks": true,
+    "noUnusedLocals": false,
+    "paths": {},
+    "types": [
+      "node",
+      "long",
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    ],
+  "exclude": [
+    "node_modules",
+    "test/*",
+    "dist/*"
+  ]
+}
