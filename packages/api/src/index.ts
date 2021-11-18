@@ -1,11 +1,6 @@
 import {
   Connection,
-  Transaction,
-  SystemProgram,
-
   ConfirmOptions,
-  PublicKey,
-  Keypair,
 } from '@solana/web3.js';
 
 const network = 'http://127.0.0.1:8899';
