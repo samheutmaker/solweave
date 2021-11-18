@@ -2,6 +2,9 @@
   "name": "@solweave/api",
   "version": "0.0.1",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "watch": "npm run build && node --trace-warnings .dist/index.js",
     "dev": "ENVIRONMENT_NAME=dev npm-watch watch",
