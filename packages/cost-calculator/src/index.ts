@@ -7,6 +7,7 @@ import request from 'axios';
 const ARWEAVE_URL = 'https://node1.bundlr.network';
 const CONVERSION_RATES_URL = 'https://api.coingecko.com/api/v3/simple/price?ids=solana,arweave&vs_currencies=usd';
 const WINSTON_MULTIPLIER = 10 ** 12;
+const LAMPORTS_PER_SOL = 10 ** 8;
 
 type TokenPrices = {
   solana: number;
@@ -15,7 +16,9 @@ type TokenPrices = {
 
 type UploadCost = {
   solana: number;
+  lamports: number;
   arweave: number;
+  winston: number;
   arweavePrice: number;
   solanaPrice: number;
   exchangeRate: number;
@@ -59,10 +62,13 @@ class UploadCostCalculator {
     const arweavePrice = tokenPrices.arweave;
     const solanaPrice = tokenPrices.solana;
     const exchangeRate = arweavePrice / solanaPrice;
+    const solana = totalArCost * exchangeRate;
 
     return {
+      solana,
+      lamports: solana * LAMPORTS_PER_SOL,
       arweave: totalArCost,
-      solana: totalArCost * exchangeRate,
+      winston: totalWinstonCost,
       arweavePrice,
       solanaPrice,
       exchangeRate,

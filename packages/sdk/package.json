@@ -5,10 +5,15 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "./.dist/cjs/index.js",
+  "module": "./.dist/esm/index.js",
+  "files": [
+    ".dist/"
+  ],
   "scripts": {
-    "watch": "npm run build && node --trace-warnings .dist/index.js",
+    "watch": "npm run build",
     "dev": "ENVIRONMENT_NAME=dev npm-watch watch",
-    "build": "NODE_OPTIONS=--max-old-space-size=4096 tsc --jsx react --project . ",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "start": "node .dist/index.js"
   },
   "watch": {
@@ -22,6 +27,9 @@
     }
   },
   "dependencies": {
+    "@project-serum/anchor": "^0.18.2",
+    "@solana/wallet-adapter-react": "^0.13.1",
+    "@solana/web3.js": "^1.30.2",
     "@solweave/cost-calculator": "^0.0.2",
     "@types/axios": "^0.14.0",
     "axios": "^0.24.0"
