@@ -8,6 +8,7 @@ import {
   ConfirmOptions,
   PublicKey,
 } from '@solana/web3.js';
+import axios from 'axios';
 
 interface SolweaveUploadParams {
   files: File[];
@@ -21,8 +22,7 @@ const toPublicKey = new PublicKey('5aJP21X4exwSNvnQHgVp4RG6Fqw6bhAdpkFycbjahGFh'
 async function upload(params: SolweaveUploadParams): Promise<string> {
   try {
     const uploadCost = await UploadCostCalculator.calculate(params.files.map((file) => file.size));
-
-    console.log(uploadCost);
+    console.log(`Upload Cost: ${JSON.stringify(uploadCost, null, 2)}`);
 
     const connection = new Connection(
       params.network,
@@ -47,6 +47,19 @@ async function upload(params: SolweaveUploadParams): Promise<string> {
     console.log(signature);
 
     await provider.connection.confirmTransaction(signature, 'processed');
+
+    const data = new FormData();
+    data.append('txId', signature);
+    params.files.forEach((file) => {
+      data.append('files', file);
+    });
+
+    const response = await axios.post('http://localhost:3001/upload', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
     return signature;
   } catch (e) {
     console.error(e);

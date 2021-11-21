@@ -58,8 +58,6 @@ const App: React.FC<AppProps> = () => {
       walletContextState: walletContextState,
     });
 
-    console.log(txId);
-
     setAreaveFileId(txId);
   };
 
