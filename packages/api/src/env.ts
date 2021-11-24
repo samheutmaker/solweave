@@ -1,0 +1,2 @@
+export const ARWEAVE_JWK_FILEPATH = process.env.ARWEAVE_JWK_FILEPATH;
+export const SOLANA_WALLET_PUBLIC_KEY = process.env.SOLANA_WALLET_PUBLIC_KEY;

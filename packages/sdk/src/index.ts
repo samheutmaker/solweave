@@ -60,7 +60,7 @@ async function upload(params: SolweaveUploadParams): Promise<string> {
       },
     });
 
-    return signature;
+    return response?.data?.url ?? null;
   } catch (e) {
     console.error(e);
     throw e;

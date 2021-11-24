@@ -51,14 +51,14 @@ const App: React.FC<AppProps> = () => {
   const walletContextState: WalletContextState = useWallet();
 
   const onDrop = async (acceptedFiles: File[]) => {
-    const txId = await solweave.upload({
+    const imageUrl = await solweave.upload({
       files: acceptedFiles,
       network: network,
       txConfirmOptions: txConfirmOptions,
       walletContextState: walletContextState,
     });
 
-    setAreaveFileId(txId);
+    setAreaveFileId(imageUrl);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -90,7 +90,10 @@ const App: React.FC<AppProps> = () => {
         <input {...getInputProps()} />
       </Dropzone>
       </Modal>
-      File ID: {arweaveFileId}
+      File URL: {arweaveFileId}
+      {arweaveFileId && (
+        <img src={arweaveFileId} alt="arweave file" />
+      )}
     </Container>
   );
 }
