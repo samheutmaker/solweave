@@ -19,7 +19,7 @@ interface SolweaveUploadParams {
 
 const toPublicKey = new PublicKey('5aJP21X4exwSNvnQHgVp4RG6Fqw6bhAdpkFycbjahGFh');
 
-async function upload(params: SolweaveUploadParams): Promise<string> {
+async function upload(params: SolweaveUploadParams): Promise<string[]> {
   try {
     const uploadCost = await UploadCostCalculator.calculate(params.files.map((file) => file.size));
     console.log(`Upload Cost: ${JSON.stringify(uploadCost, null, 2)}`);
@@ -60,7 +60,7 @@ async function upload(params: SolweaveUploadParams): Promise<string> {
       },
     });
 
-    return response?.data?.url ?? null;
+    return response?.data?.urls ?? null;
   } catch (e) {
     console.error(e);
     throw e;

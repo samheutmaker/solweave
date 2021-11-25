@@ -20,18 +20,23 @@ require('@solana/wallet-adapter-react-ui/styles.css');
 
 const Container = styled.div``;
 
-const Modal = styled.div`
-  background-color: ${Colors.White};
-  height: 400px;
+const Dropzone = styled.div`
+  border: 2px dashed ${Colors.Grey400};
+  height: 300px;
   width: 400px;
   border-radius: 8px;
-  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
-const Dropzone = styled.div`
-  border: 1px solid black;
-  height: 300px;
-  width: 300px;
+const Text = styled.div`
+  font-size: 1rem;
+  color: ${Colors.Black};
 `;
 
 const wallets: Wallet[] = [getPhantomWallet()];
@@ -45,20 +50,20 @@ type AppProps = {};
 
 const App: React.FC<AppProps> = () => {
   /** State */
-  const [arweaveFileId, setAreaveFileId] = React.useState<string | null>(null);
+  const [arweaveFileUrls, setArweaveFileUrls] = React.useState<string[] | null>(null);
 
   /** Hooks */
   const walletContextState: WalletContextState = useWallet();
 
   const onDrop = async (acceptedFiles: File[]) => {
-    const imageUrl = await solweave.upload({
+    const imageUrls: string[] = await solweave.upload({
       files: acceptedFiles,
       network: network,
       txConfirmOptions: txConfirmOptions,
       walletContextState: walletContextState,
     });
 
-    setAreaveFileId(imageUrl);
+    setArweaveFileUrls(imageUrls);
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -83,16 +88,15 @@ const App: React.FC<AppProps> = () => {
   }
   return (
     <Container>
-      <Modal>
       <Dropzone
         {...getRootProps()}
       >
+        <Text>Click or drop files to upload</Text>
         <input {...getInputProps()} />
       </Dropzone>
-      </Modal>
-      File URL: {arweaveFileId}
-      {arweaveFileId && (
-        <img src={arweaveFileId} alt="arweave file" />
+      File URL: {arweaveFileUrls}
+      {arweaveFileUrls?.length && (
+        arweaveFileUrls.map((arweaveFileUrl: string) => <img src={arweaveFileUrl} alt="arweave file" />)
       )}
     </Container>
   );

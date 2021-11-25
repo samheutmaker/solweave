@@ -1,2 +1,9 @@
-export const ARWEAVE_JWK_FILEPATH = process.env.ARWEAVE_JWK_FILEPATH;
+export const HTTP_PORT = process.env.HTTP_PORT || 3001;
 export const SOLANA_WALLET_PUBLIC_KEY = process.env.SOLANA_WALLET_PUBLIC_KEY;
+export const SOLANA_NETWORK = process.env.SOLANA_NETWORK || 'http://127.0.0.1:8899';
+export const SOLANA_PREFLIGHT_COMMITMENT = process.env.SOLANA_PREFLIGHT_COMMITMENT || 'confirmed';
+export const SOLANA_COMMITMENT = process.env.SOLANA_COMMITMENT || 'confirmed';
+export const ARWEAVE_HOST = process.env.ARWEAVE_HOST || 'arweave.net';
+export const ARWEAVE_PORT = process.env.ARWEAVE_PORT || 443;
+export const ARWEAVE_PROTOCOL = process.env.ARWEAVE_PROTOCOL || 'https';
+export const ARWEAVE_JWK_FILEPATH = process.env.ARWEAVE_JWK_FILEPATH;
